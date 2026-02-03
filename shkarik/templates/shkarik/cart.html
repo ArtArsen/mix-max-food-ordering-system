@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Корзина — SHAKIR & HUMAYRA FOOD</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="{% static 'shkarik/css/cart.css' %}">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="line1">SHAKIR &</span><br>
+      <span class="line2">HUMAYRA</span>
+      <span class="line3">FOOD</span>
+    </div>
+    <a href="{% url 'home' %}" class="back-link">Назад к меню</a>
+  </header>
+
+  <main>
+    <h1>Корзина</h1>
+
+    <!-- Пример товара -->
+    <div class="cart-item">
+      <img src="images/Шаурма.jpg" alt="Шаурма классическая">
+      <div class="cart-details">
+        <h3>Шаурма классическая</h3>
+        <p>Соус фирменный, мясо куриное, овощи</p>
+      </div>
+      <div class="cart-price">180с</div>
+    </div>
+
+    <div class="cart-item">
+      <img src="images/Бургер.jpg" alt="Гамбургер">
+      <div class="cart-details">
+        <h3>Гамбургер</h3>
+        <p>Булка, котлета, сыр, салат, соус</p>
+      </div>
+      <div class="cart-price">150с</div>
+    </div>
+
+    <!-- Оформление -->
+    <div class="checkout-block">
+      <h2>Оформление заказа</h2>
+
+      <label>Имя:</label>
+      <input type="text" placeholder="Введите ваше имя">
+
+      <label>Телефон:</label>
+      <input type="text" placeholder="+996 XXX XXX XXX">
+
+      <label>Способ получения:</label>
+      <div class="delivery-options">
+        <label><input type="radio" name="delivery" value="pickup" checked> Самовывоз</label>
+        <label><input type="radio" name="delivery" value="delivery"> Доставка</label>
+      </div>
+
+      <div class="address-block">
+        <label>Адрес доставки:</label>
+        <input type="text" placeholder="г. Кызыл-Кыя, ул. Кирпичная, д. 42">
+      </div>
+
+      <label><input type="checkbox" id="delayed"> Отложенное получение</label>
+      <div class="time-block">
+        <label>Время в которое хотите получить заказ:</label>
+        <input type="time">
+      </div>
+
+      <label>Комментарий к заказу:</label>
+      <textarea rows="3" placeholder="Например: без лука или побольше соуса"></textarea>
+
+      <div class="total">Итого: 330с</div>
+      <button class="confirm-btn">Подтвердить заказ</button>
+    </div>
+  </main>
+
+  <script src="{% static 'shkarik/js/cart.js' %}"></script>
+</body>
+</html>

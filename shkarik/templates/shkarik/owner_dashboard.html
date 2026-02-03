@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Дашборд — SHAKIR & HUMAYRA FOOD</title>
+  <link rel="icon" type="image/png" href="{% static 'shkarik/images/logo.png' %}">
+  <link rel="stylesheet" href="{% static 'shkarik/css/owner.css' %}">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="line1">SHAKIR &</span><br>
+      <span class="line2">HUMAYRA</span>
+      <span class="line3">FOOD</span>
+    </div>
+    <nav>
+      <a href="{% url 'owner_dashboard' %}" class="active">📊 Дашборд</a>
+      <a href="/admin/" class="logout">⚙️ Админка</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-title">
+      <h1>📊 Дашборд владельца</h1>
+      <p class="subtitle">Обзор за последние 30 дней</p>
+    </div>
+
+    <!-- СТАТИСТИКА КАРТОЧКИ -->
+    <section class="stats-grid">
+      <!-- Выручка -->
+      <div class="stat-card revenue">
+        <div class="stat-icon">💰</div>
+        <div class="stat-content">
+          <h3>Выручка</h3>
+          <div class="stat-values">
+            <div class="stat-item">
+              <span class="label">Сегодня</span>
+              <span class="value">{{ revenue_today|floatformat:0 }}</span>
+              <span class="currency">сом</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">Неделя</span>
+              <span class="value">{{ revenue_week|floatformat:0 }}</span>
+              <span class="currency">сом</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">Месяц</span>
+              <span class="value highlight">{{ revenue_month|floatformat:0 }}</span>
+              <span class="currency">сом</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Заказы -->
+      <div class="stat-card orders">
+        <div class="stat-icon">📦</div>
+        <div class="stat-content">
+          <h3>Заказы</h3>
+          <div class="stat-values">
+            <div class="stat-item">
+              <span class="label">Сегодня</span>
+              <span class="value">{{ orders_today }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">Неделя</span>
+              <span class="value">{{ orders_week }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="label">Месяц</span>
+              <span class="value highlight">{{ orders_month }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ГРАФИК ПРОДАЖ -->
+    <section class="chart-section">
+      <div class="section-header">
+        <h3>📈 График продаж за неделю</h3>
+        <span class="badge">Последние 7 дней</span>
+      </div>
+      <div class="chart-container">
+        <canvas id="salesChart"></canvas>
+      </div>
+    </section>
+
+    <div class="two-column-grid">
+      <!-- ТОП-5 БЛЮД -->
+      <section class="top-dishes">
+        <div class="section-header">
+          <h3>🍔 ТОП-5 блюд</h3>
+          <span class="badge">За месяц</span>
+        </div>
+        {% if top_dishes %}
+          <div class="dishes-list">
+            {% for dish in top_dishes %}
+            <div class="dish-item">
+              <div class="dish-rank">{{ forloop.counter }}</div>
+              <div class="dish-info">
+                <span class="dish-name">{{ dish.name }}</span>
+                <span class="dish-stats">{{ dish.quantity }} шт • {{ dish.revenue|floatformat:0 }} сом</span>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="no-data">Нет данных</p>
+        {% endif %}
+      </section>
+
+      <!-- ЗАКАЗЫ ПО ЧАСАМ -->
+      <section class="time-slots">
+        <div class="section-header">
+          <h3>⏰ Заказы по часам</h3>
+          <span class="badge">Сегодня</span>
+        </div>
+        <div class="time-slots-list">
+          {% for slot in time_slots %}
+          <div class="time-slot">
+            <span class="time-label">{{ slot.slot }}</span>
+            <div class="progress-bar">
+              <div class="progress" data-percent="{{ slot.percent }}"></div>
+            </div>
+            <span class="time-percent">{{ slot.percent }}% {% if slot.percent > 30 %}🔥{% endif %}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+
+    <!-- КУРЬЕРЫ -->
+    <section class="couriers">
+      <div class="section-header">
+        <h3>🚴 Курьеры</h3>
+        <span class="badge">Активность сегодня</span>
+      </div>
+      {% if couriers_stats %}
+        <div class="couriers-grid">
+          {% for courier in couriers_stats %}
+          <div class="courier-card {% if courier.is_active %}active{% endif %}">
+            <div class="courier-header">
+              <div class="courier-avatar">👤</div>
+              <div class="courier-info">
+                <h4>{{ courier.name }}</h4>
+                <span class="courier-code">{{ courier.code }}</span>
+              </div>
+              <div class="courier-status">
+                {% if courier.is_active %}
+                  <span class="status-badge active">✅ Активен</span>
+                {% else %}
+                  <span class="status-badge inactive">⚫ Неактивен</span>
+                {% endif %}
+              </div>
+            </div>
+            <div class="courier-stats">
+              <div class="stat">
+                <span class="stat-label">Доставок</span>
+                <span class="stat-value">{{ courier.deliveries }}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="no-data">Нет активных курьеров</p>
+      {% endif %}
+    </section>
+  </main>
+
+  <!-- Передаём данные из Django в HTML -->
+  <script id="sales-data" type="application/json">
+    {{ sales_by_day|safe }}
+  </script>
+
+  <!-- Chart.js библиотека -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  
+  <!-- Наш JS файл -->
+  <script src="{% static 'shkarik/js/owner.js' %}"></script>
+</body>
+</html>

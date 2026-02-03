@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заказ оформлен — SHAKIR & HUMAYRA FOOD</title>
+  <link rel="stylesheet" href="{% static 'shkarik/css/order_success.css' %}">
+</head>
+<body>
+
+<div class="success-container">
+
+  <div class="checkmark">✓</div>
+
+  <div class="status">
+    Текущий статус: {{ order.get_status_display }}
+  </div>
+
+  <div class="order-number">
+    {{ order.public_code }}
+  </div>
+
+  <p style="color:#ffe600; font-size:0.9rem;">
+    <strong>Только</strong> в этом окне вы можете следить за состоянием заказа.
+  </p>
+
+  <div class="screenshot-hint">
+    <p>📌 Сохраните эту страницу в закладки.</p>
+    <p>📸 Также сделайте скриншот — покажите на кассе при получении.</p>
+    <button class="screenshot-btn" onclick="takeScreenshot()">Как сделать скриншот?</button>
+  </div>
+
+  <div class="order-details">
+    <p><strong>Имя:</strong> {{ order.client_name }}</p>
+    <p><strong>Телефон:</strong> {{ order.client_phone }}</p>
+    <p><strong>Получение:</strong> 
+      {% if order.delivery_type == 'pickup' %}
+        Самовывоз
+      {% else %}
+        Доставка
+      {% endif %}
+    </p>
+    {% if order.address %}
+    <p><strong>Адрес:</strong> {{ order.address }}</p>
+    {% endif %}
+    {% if order.scheduled_time %}
+    <p><strong>Время:</strong> {{ order.scheduled_time }}</p>
+    {% endif %}
+    <p><strong>Сумма:</strong> {{ order.total_price }} сом</p>
+  </div>
+
+  <!-- ОТМЕНА ЗАКАЗА -->
+  {% if order.status == 'new' %}
+    <button class="cancel-btn" onclick="cancelOrder()">❌ Отменить заказ</button>
+  {% elif order.status in 'cooking,ready,delivering' %}
+    <div class="info-box">
+      <p>⚠️ Ваш заказ уже готовится/готов.</p>
+      <p>О подробностях свяжитесь с нашим менеджером:</p>
+      <p><a href="tel:+996223515353">📞 +996 223 515 353</a></p>
+    </div>
+  {% endif %}
+
+  <a href="{% url 'home' %}" class="btn">На главную</a>
+
+</div>
+
+<script src="{% static 'shkarik/js/order_success.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курьер</title>
+<link rel="stylesheet" href="{% static 'shkarik/css/courier.css' %}?v=200">
+</head>
+<body>
+
+<div class="orders-wrapper"></div>
+
+<script>
+const COURIER_CODE = "{{ courier_code }}";
+</script>
+
+<script src="{% static 'shkarik/js/courier.js' %}?v=200"></script>
+
+</body>
+</html>

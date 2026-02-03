@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHAKIR & HUMAYRA FOOD</title>
+  <link rel="stylesheet" href="{% static 'shkarik/css/index.css' %}">
+</head>
+<link rel="icon" type="image/png" href="logo.png">
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <span class="line1">MIX &</span><br>
+        <span class="line2">MAX</span>
+        <span class="line3">FOOD</span>
+      </div>
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="menu-btn">
+        <span></span><span></span><span></span>
+      </label>
+      <nav>
+        <a href="#about">О нас</a>
+        <a href="#menu">Меню</a>
+        <a href="#contacts">Контакты</a>
+        <a href="{% url 'cart' %}">Корзина</a>
+        <a href="profile.html">Профиль</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- О НАС -->
+    <section id="about">
+      <h2>О нашем заведении</h2>
+      <p>Самая вкусная шаурма и свежие ингредиенты — всё с любовью ❤️</p>
+    </section>
+
+    <!-- МЕНЮ -->
+    <section id="menu">
+      <h2>Наше меню</h2>
+
+      <!-- Список блюд -->
+      <div class="menu-grid" id="menuGrid">
+        {% for product in products %}
+          <div class="menu-item" data-info="{{ product.description|linebreaksbr }}">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <h3>{{ product.name }}</h3> <br>
+            <div class="price">{{ product.price }}с</div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section id="contacts">
+      <h2>Контакты</h2>
+      <p>📍 г. Бишкек<br>☎️ +996 556 444 555</p>
+
+      <div class="map-container">
+        <img src="{% static 'shkarik/images/Карта.png' %}" alt="Карта расположения шаурмечной SHAKIR & HUMAYRA FOOD в городе Кызыл-Кыя">
+      </div>
+    </section>
+
+  </main>
+
+  <script src="{% static 'shkarik/js/index.js' %}"></script>
+</body>
+</html>

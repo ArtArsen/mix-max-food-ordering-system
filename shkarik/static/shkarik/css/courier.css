@@ -1,0 +1,137 @@
+/* ====== ГЛОБАЛЬНО ====== */
+body {
+    background: #0d0d0d;
+    color: #e6e6e6;
+    font-family: 'Inter', sans-serif;
+    padding: 18px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* ====== Выход ====== */
+.logout {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    background: #242424;
+    border: 1px solid #333;
+    color: #ddd;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .2s;
+}
+.logout:hover {
+    background: #333;
+    border-color: #444;
+    color: #fff;
+}
+
+/* ====== Карточки ====== */
+.orders-wrapper {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.courier-card {
+    background: #1c1c1c;
+    border: 1px solid #333;
+    border-radius: 14px;
+    padding: 22px;
+    transition: .15s ease-in-out;
+    box-shadow: none; /* ❌ никаких сияний */
+}
+
+.courier-card:hover {
+    border-color: #444;
+}
+
+/* ====== Статусы рамок ====== */
+.waiting {
+    border-color: #9f8e36; /* Приглушённый жёлтый */
+}
+
+/* ====== Код заказа ====== */
+.code {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    color: #ffd84a; /* Жёлтый как на кухне */
+    margin-bottom: 12px;
+}
+
+/* ====== Инфо ====== */
+.field {
+    font-size: 1.1rem;
+    margin: 4px 0;
+}
+
+.price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 14px;
+    color: #00ff83;
+}
+
+/* Скрытие приватной информации до принятия */
+.hide {
+    opacity: .18;
+    filter: blur(4px);
+    user-select: none;
+    pointer-events: none;
+}
+
+/* ====== Кнопки ====== */
+.actions {
+    margin-top: 26px;
+}
+
+.btn {
+    width: 100%;
+    display: block;
+    padding: 14px 0;
+    margin-bottom: 10px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #333;
+    background: transparent;
+    transition: .2s;
+}
+
+.btn:last-child {
+    margin-bottom: 0;
+}
+
+/* Взять заказ */
+.take {
+    border-color: #c8a200;
+    color: #ffd84a;
+}
+.take:hover {
+    background: rgba(200,150,0,0.1);
+}
+
+/* ✅ Доставлено */
+.success {
+    border-color: #00a94e;
+    color: #52ff95;
+}
+.success:hover {
+    background: rgba(0,169,78,0.1);
+}
+
+/* ❌ Не отвечает */
+.fail {
+    border-color: #a71742;
+    color: #ff4b74;
+}
+.fail:hover {
+    background: rgba(167,23,66,0.1);
+}

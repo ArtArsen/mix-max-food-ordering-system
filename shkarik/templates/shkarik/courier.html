@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курьер</title>
+    <link rel="stylesheet" href="{% static 'shkarik/css/courier.css' %}?v=10">
+</head>
+<body>
+
+<div class="orders-wrapper"></div>
+
+<!-- ВАЖНО: defer! JS загрузится после HTML -->
+<script defer src="{% static 'shkarik/js/courier.js' %}?v=10"></script>
+</body>
+</html>

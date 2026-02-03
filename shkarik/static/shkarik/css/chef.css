@@ -1,0 +1,88 @@
+body {
+        margin: 0;
+        padding: 8px;
+        font-family: "Consolas", monospace;
+        background: #1b1b1b;
+        color: #e6e6e6;
+    }
+
+    /* Сетка */
+    .orders-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        justify-content: flex-start;
+    }
+
+    /* Карточка */
+    .container {
+        width: 210px;
+        background: #222;
+        border: 1px solid #333;
+        border-radius: 6px;
+        padding: 6px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 220px; /* одинаковая высота */
+    }
+
+    .title {
+        text-align: center;
+        font-size: 13px;
+        padding: 3px;
+        border-bottom: 1px solid #333;
+        margin-bottom: 5px;
+    }
+
+    .block {
+        margin-bottom: 6px;
+        font-size: 11px;
+    }
+
+    .line,
+    .price-line {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2px;
+        font-size: 11px;
+    }
+
+    .comment,
+    .sum {
+        font-size: 11px;
+        opacity: .8;
+    }
+
+    .sum {
+        font-weight: bold;
+        margin-top: 2px;
+    }
+
+    .btns {
+        display: flex;
+        gap: 3px;
+    }
+
+    .btn {
+        flex: 1;
+        padding: 6px 0;
+        text-align: center;
+        border-radius: 4px;
+        border: 1px solid #333;
+        cursor: pointer;
+        font-size: 11px;
+        user-select: none;
+    }
+
+    /* Цвета кнопок */
+    .btn.yellow { border-color: #c8a200; color: #ffd84a; }
+    .btn.green  { border-color: #00c85a; color: #00ff83; }
+    .btn.red    { border-color: #c8003f; color: #ff4b74; }
+
+
+    /* последний блок идёт вниз */
+    .bottom {
+        margin-top: auto;
+    }

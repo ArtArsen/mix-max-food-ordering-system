@@ -1,0 +1,75 @@
+/* === СТРАНИЦА ВХОДА === */
+.login-box {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 30px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.login-box h2 {
+    text-align: center;
+    color: #ffe600;
+    margin-bottom: 30px;
+}
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-box input {
+    padding: 15px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background: #2a2a2a;
+    color: #fff;
+    font-size: 16px;
+}
+
+.login-box input:focus {
+    outline: none;
+    border-color: #ffe600;
+}
+
+.login-box button {
+    padding: 15px;
+    background: #ffe600;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-box button:hover {
+    background: #ffd700;
+}
+
+.login-box .error {
+    background: #ff4444;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+/* === КНОПКА ВЫХОДА === */
+.logout {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #ff4444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout:hover {
+    background: #cc0000;
+}
