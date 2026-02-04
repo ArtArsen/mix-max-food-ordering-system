@@ -30,8 +30,10 @@
 - Страница отслеживания с автообновлением статуса
 - Валидация номера телефона (форматы КР)
 
-Фото -
+Фото:
 <img width="1901" height="903" alt="Demo1" src="https://github.com/user-attachments/assets/c580f9bb-9337-4295-8422-fdd8e1c7dd16" />
+
+<img width="1889" height="896" alt="Demo7" src="https://github.com/user-attachments/assets/2c2da9e9-33ad-45ce-a8a1-642275282f9e" />
 
 ### Панель повара (защищённый доступ)
 - Аутентификация по уникальному коду
